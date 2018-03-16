@@ -8,7 +8,8 @@
 		<intercept-url pattern="/**" access="hasRole('USER')" />
 		<form-login />
 		<logout />
-	</http> <!-- provider -->
+	</http>
+	<!-- provider -->
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
