@@ -4,31 +4,22 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-	<http>
-		<intercept-url pattern="/**" access="hasRole('USER')" />
-		<form-login
-			username-parameter="id"
-			password-parameter="pw"
-		 />
-		<logout />
-	</http>
-	<!-- provider -->
-	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="user" password="password" authorities="ROLE_USER" />
-			</user-service>
-		</authentication-provider>
-	</authentication-manager>
-
-
-	<!-- provider -->
-	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="user" password="password" authorities="ROLE_USER" />
-			</user-service>
-		</authentication-provider>
-	</authentication-manager>
-
+	<!-- 확장자를 이용해 패턴을 걸때는 /**/*.해당 확장자 로 할 것(Ant Pattern 규칙) -->
+  <http pattern="/**/*.js" security="none"/>
+  <http pattern="/**/*.css" security="none"/>
+  <http pattern="/images/*" security="none"/>
+   
+  <http auto-config="true">
+    <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+    <intercept-url pattern="/**" access="hasRole('USER')"/>
+  </http>
+   
+  <authentication-manager>
+    <authentication-provider>
+      <user-service>
+        <user name="user1" password="user1password" authorities="ROLE_USER"/>
+        <user name="admin1" password="admin1password" authorities="ROLE_ADMIN"/>
+      </user-service>
+    </authentication-provider>
+  </authentication-manager>
 </beans:beans>
