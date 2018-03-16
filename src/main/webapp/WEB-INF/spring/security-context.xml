@@ -6,7 +6,10 @@
 
 	<http>
 		<intercept-url pattern="/**" access="hasRole('USER')" />
-		<form-login />
+		<form-login
+			username-parameter="id"
+			password-parameter="pw"
+		 />
 		<logout />
 	</http>
 	<!-- provider -->
