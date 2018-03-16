@@ -1,29 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>한국인식산업(주)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Home</title>
 </head>
 <body>
+<h1>한국인식산업</h1>
 
+<sec:authorize access="isAnonymous()">
+<p><a href="<c:url value="/login/loginForm" />">로그인</a></p>
+</sec:authorize>
 
- <c:if test="${empty member}">
-	<a href="${pageContext.request.contextPath}/member/memberJoin">회원가입</a>
-	<form action="${pageContext.request.contextPath}/member/memberLogin">
-		<input type="text" id="id" name="id"> <input type="password"
-			id="pw" name="pw">
-		<button type="submit">로그인</button>
-	</form>
-	 </c:if>
-	 <c:if test="${!empty member}">
-	                     	<li><a id="memberInfo">${member.name}</a></li>
-	                     	<a href="${pageContext.request.contextPath}/kid/face">얼굴인식</a>
-	                     	<a href="${pageContext.request.contextPath}/member/memberLogout" class="logout">로그아웃</a>
-	                     	
-	                     </c:if>
+<sec:authorize access="isAuthenticated()">
+<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+    <input type="submit" value="로그아웃" />
+</form:form>
+</sec:authorize>
 
+<h3>
+    [<a href="<c:url value="/intro/introduction.do" />">소개 페이지</a>]
+    [<a href="<c:url value="/admin/adminHome.do" />">관리자 홈</a>]
+</h3>
 </body>
 </html>
+
+<!-- https://github.com/kdevkr/spring-demo-security -->
