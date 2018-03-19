@@ -40,7 +40,7 @@ public class KidController {
 		realFolder = context.getRealPath(saveFolder);
 
 		System.out.println("실제 서블릿 상 경로 : " + realFolder);
-		out.print("실제 서블릿 상 업로드 경로 : " + realFolder);
+		System.out.print("실제 서블릿 상 업로드 경로 : " + realFolder);
 
 		MultipartRequest multi = null;
 
@@ -51,9 +51,8 @@ public class KidController {
 			while(en.hasMoreElements()){
 				String name = (String)en.nextElement();
 				String value = multi.getParameter(name);
-				out.print("<br>" + name + ":" + value);
+				System.out.println(name + ":" + value);
 			}
-			out.print("<hr>");
 
 			//전송된 파일이름 fileName1, fileName2를 가져온다.
 			en = multi.getFileNames();
@@ -75,29 +74,28 @@ public class KidController {
 				//문자열 파일 이름을 통해 실제 파일 객체를 가져온다.
 				File file = multi.getFile(name); //java.io
 
-				out.println("파라미터 이름 : " + name + "<br>");
-				out.println("원본 이름 : " + originFile + "<br>");
-				out.println("시스템 이름 : " + systemFile + "<br>");
-				out.println("파일 타입 : " + fileType + "<br>");
-				out.println("이미지 경로 : " + realPath + "<br>");
+				System.out.println("파라미터 이름 : " + name);
+				System.out.println("원본 이름 : " + originFile);
+				System.out.println("시스템 이름 : " + systemFile);
+				System.out.println("파일 타입 : " + fileType);
+				System.out.println("이미지 경로 : " + realPath);
 
 				if (file != null) {
-					out.println("크기 : " + file.length() + "byte"
-							+ "<br><br>");
+					System.out.println("크기 : " + file.length() + "byte");
 					// 이미지 파일 경로 저장하기.
 					imagesPath[index] = realPath;
 				}
 				index++;
 			}
-			out.println("imagesPath[0] : " + imagesPath[0] + "<br>");
-			out.println("imagesPath[1] : " + imagesPath[1] + "<br>");
+			System.out.println("imagesPath[0] : " + imagesPath[0]);
+			System.out.println("imagesPath[1] : " + imagesPath[1]);
 
 			//KIFACE kf = new KIFACE("모델파일 경로");
 			KIFACE kf = new KIFACE();
 			matchScore = kf.convertImageToByteArray(imagesPath[0],
 					imagesPath[1]);
 			if (matchScore == 0) {
-				out.println("변환 완료.");
+				System.out.println("변환 완료.");
 				//pageContext.forward("01_FileUploadForm.jsp");	// 이동 가능 > 새로 불러옴.
 
 				/* RequestDispatcher rd = request
@@ -106,7 +104,7 @@ public class KidController {
 					rd.forward(request, response); */
 			}
 		} catch (Exception e) {
-			out.println("파일 처리 간 문제 발생");
+			System.out.println("파일 처리 간 문제 발생");
 		}
 
 
