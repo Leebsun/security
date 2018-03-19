@@ -8,9 +8,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value="/kid/*")
 public class KidController {
 	
+	@RequestMapping(value="form")
+	public String uploadform() throws Exception{
+		return "kid/01_FileUploadForm";
+	}
+	
 	@RequestMapping(value="face")
-	public String memberIdCheck() throws Exception{
-		return "kid/kid";
+	public String upload() throws Exception{
+		return "kid/01_FileUpload";
 	}
 
 }

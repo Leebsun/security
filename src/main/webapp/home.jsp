@@ -20,7 +20,7 @@
 	 </c:if>
 	 <c:if test="${!empty member}">
 	                     	<li><a id="memberInfo">${member.name}</a></li>
-	                     	<a href="${pageContext.request.contextPath}/kid/face">얼굴인식</a>
+	                     	<a href="${pageContext.request.contextPath}/kid/form">얼굴인식</a>
 	                     	<a href="${pageContext.request.contextPath}/member/memberLogout" class="logout">로그아웃</a>
 	                     	
 	                     </c:if>
