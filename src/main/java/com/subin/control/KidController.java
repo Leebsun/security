@@ -1,6 +1,7 @@
 package com.subin.control;
 
 import java.io.File;
+import java.io.OutputStream;
 import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
@@ -23,6 +24,9 @@ public class KidController {
 	public String uploadform() throws Exception{
 		return "kid/01_FileUploadForm";
 	}
+	
+	
+	
 
 	@RequestMapping(value="face")
 	public String upload(HttpServletRequest request) throws Exception{
@@ -106,6 +110,9 @@ public class KidController {
 		} catch (Exception e) {
 			System.out.println("파일 처리 간 문제 발생");
 		}
+		
+	
+		
 
 
 
